@@ -1,0 +1,26 @@
+service:
+  name: orcas-serverless
+custom:
+  secrets: ${file(secrets.json)}
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  profile: orcas-serverless-admin
+  environment:
+    NODE_ENV: ${self:custom.secrets.NODE_ENV}
+    DOMAIN: ${self:custom.secrets.DOMAIN}
+    API_CHIMP: ${self:custom.secrets.API_CHIMP}
+    DC: ${self:custom.secrets.DC}
+    LIST: ${self:custom.secrets.LIST}
+functions:
+  subscribe:
+    handler: handler.run
+    events:
+      - http:
+          path: /
+          method: post
+          cors: true

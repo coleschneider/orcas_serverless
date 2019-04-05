@@ -1,0 +1,35 @@
+{
+  "name": "orcas-serverless",
+  "version": "1.0.0",
+  "description": "Serverless webpack example using Typescript",
+  "main": "handler.js",
+  "scripts": {
+    "lint": "tslint --project . --format verbose",
+    "deploy": "serverless deploy",
+    "build": "serverless package",
+    "clean": "rimraf .build .serverless .nyc_output coverage",
+    "prebuild": "npm run clean && npm run clean",
+    "test": "mocha -r ts-node/register ./test/**/*.spec.ts"
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.10"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.17",
+    "@types/axios": "^0.14.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^10.12.18",
+    "axios": "^0.18.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "serverless-webpack": "^5.2.0",
+    "ts-loader": "^5.3.3",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.15.0",
+    "typescript": "^3.2.4",
+    "webpack": "^4.29.0"
+  },
+  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "license": "MIT"
+}
