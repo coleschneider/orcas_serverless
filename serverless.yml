@@ -2,10 +2,9 @@ service:
   name: orcas-serverless
 custom:
   secrets: ${file(secrets.json)}
-# Add the serverless-webpack plugin
 plugins:
   - serverless-webpack
-
+  - serverless-offline
 provider:
   name: aws
   runtime: nodejs8.10
@@ -13,12 +12,12 @@ provider:
   environment:
     NODE_ENV: ${self:custom.secrets.NODE_ENV}
     DOMAIN: ${self:custom.secrets.DOMAIN}
-    API_CHIMP: ${self:custom.secrets.API_CHIMP}
-    DC: ${self:custom.secrets.DC}
-    LIST: ${self:custom.secrets.LIST}
+    API_CHIMP_KEY: ${self:custom.secrets.API_CHIMP_KEY}
+    DATA_CENTER: ${self:custom.secrets.DATA_CENTER}
+    LIST_ID: ${self:custom.secrets.LIST_ID}
 functions:
   subscribe:
-    handler: handler.run
+    handler: src/handler.run
     events:
       - http:
           path: /

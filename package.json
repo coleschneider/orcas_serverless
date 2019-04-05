@@ -9,7 +9,7 @@
     "build": "serverless package",
     "clean": "rimraf .build .serverless .nyc_output coverage",
     "prebuild": "npm run clean && npm run clean",
-    "test": "mocha -r ts-node/register ./test/**/*.spec.ts"
+    "test": "NODE_ENV=test mocha --opts tests/mocha.opts tests/**/*.spec.ts"
   },
   "dependencies": {
     "source-map-support": "^0.5.10"
@@ -23,6 +23,7 @@
     "axios": "^0.18.0",
     "chai": "^4.2.0",
     "mocha": "^6.0.2",
+    "serverless-offline": "^4.9.4",
     "serverless-webpack": "^5.2.0",
     "ts-loader": "^5.3.3",
     "ts-node": "^8.0.3",
