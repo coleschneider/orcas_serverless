@@ -42,7 +42,8 @@ export const run = asyncMiddleware(
     }
     return { // Don't catch other service errors - otherwise anyone will know an email
       statusCode: 200,
-      body: JSON.stringify(successMessage)
+      body: JSON.stringify(successMessage),
+      headers: { 'Access-Control-Allow-Origin': '*'},
     }
   }
 )
