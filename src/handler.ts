@@ -37,7 +37,7 @@ export const run = asyncMiddleware(
     
     if(!isOffline && isProd){ //We only want to make a request to apichimp if we're in prod
 
-      const memberBody = {members: [generateMemberSubs(body)], update_existing: true};
+      const memberBody = {members: [generateMemberSubs(body)]};
       await serviceInstance.post(`/lists/${listId}`, memberBody)
     }
     return { // Don't catch other service errors - otherwise anyone will know an email
