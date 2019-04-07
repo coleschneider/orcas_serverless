@@ -9,11 +9,11 @@ const listId = process.env.LIST_ID;
 const dataCenter = process.env.DATA_CENTER;
 const apiChimpKey = process.env.API_CHIMP_KEY;
 
-type StatusTypes = 'subscribed' | 'unsubscribed'
+type StatusTypes = 'subscribed' | 'unsubscribed' | 'pending'
 
 interface Member {
   email_address: string;
-  status: StatusTypes
+  status: StatusTypes,
 }
 interface SubscriptionBody {
   email_address: string
@@ -36,8 +36,8 @@ export const run = asyncMiddleware(
     if (!body || !body.email_address) throw new BadRequest('Email is required')
     
     if(!isOffline && isProd){ //We only want to make a request to apichimp if we're in prod
-    console.log("called")
-      const memberBody = {members: [generateMemberSubs(body)]};
+
+      const memberBody = {members: [generateMemberSubs(body)], update_existing: true};
       await serviceInstance.post(`/lists/${listId}`, memberBody)
     }
     return { // Don't catch other service errors - otherwise anyone will know an email
