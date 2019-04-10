@@ -10,12 +10,27 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Install Node dependencies
+          command: npm install
+      - run:
+          name: Install prettier
+          command: npm install prettier -g
+      -run:
+          name: Unit tests
+          command: npm run test
 
-      - run: npm install
-      - run: npm run test
-      - run: sudo apt-get update && sudo apt-get install -y python-dev
+      - run:
+          name: Download python
+          command: sudo apt-get update && sudo apt-get install -y python-dev
       - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
       - run: sudo python get-pip.py
-      - run: sudo pip install awscli --upgrade
-      - run: aws --version
-      - run: npm run deploy
+      - run:
+          name: Download aws-cli
+          command: sudo pip install awscli --upgrade
+      - run: 
+          name: Print cli version
+          command: aws --version
+      - run: 
+          name: Deploy Lambda function
+          command: npm run deploy
