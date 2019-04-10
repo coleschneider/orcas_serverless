@@ -4,14 +4,14 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
-    "lint-ts": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+    "lint-ts": "node_modules/.bin/tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "deploy": "serverless deploy",
     "build": "serverless package",
     "start": "sls offline",
     "clean": "rimraf .build .serverless .nyc_output coverage",
     "prebuild": "npm run clean && npm run clean",
-    "prettier:test": "prettier --parser=typescript --single-quote --trailing-comma=all --print-width=120 --list-different '{src,tests}/**/*.{ts,tsx}'",
-    "prettier": "prettier --parser=typescript --single-quote --trailing-comma=all --print-width=120 --write '{src,tests}/**/*.{ts,tsx}'",
+    "prettier:test": "node_modules/.bin/prettier --parser=typescript --single-quote --trailing-comma=all --print-width=120 --list-different '{src,tests}/**/*.{ts,tsx}'",
+    "prettier": "node_modules/.bin/prettier --parser=typescript --single-quote --trailing-comma=all --print-width=120 --write '{src,tests}/**/*.{ts,tsx}'",
     "test": "npm run prettier:test && npm run lint-ts && NODE_ENV=test mocha --opts tests/mocha.opts tests/**/*.spec.ts"
   },
   "dependencies": {
