@@ -10,8 +10,8 @@
     "start": "sls offline",
     "clean": "rimraf .build .serverless .nyc_output coverage",
     "prebuild": "npm run clean && npm run clean",
-    "prettier:test": "prettier --parser=typescript --single-quote --trailing-comma=all --print-width=120 --list-different '{src,test}/**/*.{ts,tsx}'",
-    "prettier": "prettier --parser=typescript --single-quote --trailing-comma=all --print-width=120 --write '{src,test}/**/*.{ts,tsx}'",
+    "prettier:test": "prettier --parser=typescript --single-quote --trailing-comma=all --print-width=120 --list-different '{src,tests}/**/*.{ts,tsx}'",
+    "prettier": "prettier --parser=typescript --single-quote --trailing-comma=all --print-width=120 --write '{src,tests}/**/*.{ts,tsx}'",
     "test": "npm run prettier:test && npm run lint-ts && NODE_ENV=test mocha --opts tests/mocha.opts tests/**/*.spec.ts"
   },
   "dependencies": {
@@ -38,6 +38,5 @@
     "typescript": "^3.2.4",
     "webpack": "^4.29.0"
   },
-  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
-  "license": "MIT"
+  "author": "Cole Schneider"
 }
