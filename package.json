@@ -7,9 +7,12 @@
     "lint": "tslint --project . --format verbose",
     "deploy": "serverless deploy",
     "build": "serverless package",
+    "start": "sls offline",
     "clean": "rimraf .build .serverless .nyc_output coverage",
     "prebuild": "npm run clean && npm run clean",
-    "test": "NODE_ENV=test mocha --opts tests/mocha.opts tests/**/*.spec.ts"
+    "prettier:test": "prettier --parser=typescript --single-quote --trailing-comma=all --print-width=120 --list-different '{src,test}/**/*.{ts,tsx}'",
+    "prettier": "prettier --parser=typescript --single-quote --trailing-comma=all --print-width=120 --write '{src,test}/**/*.{ts,tsx}'",
+    "test": "npm run prettier:test && npm run lint && NODE_ENV=test mocha --opts tests/mocha.opts tests/**/*.spec.ts"
   },
   "dependencies": {
     "source-map-support": "^0.5.10"
@@ -20,14 +23,17 @@
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
     "@types/node": "^10.12.18",
+    "@types/prettier": "^1.16.1",
     "axios": "^0.18.0",
     "chai": "^4.2.0",
     "mocha": "^6.0.2",
+    "prettier": "^1.16.4",
     "serverless-offline": "^4.9.4",
     "serverless-webpack": "^5.2.0",
     "ts-loader": "^5.3.3",
     "ts-node": "^8.0.3",
     "tslint": "^5.15.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.2.4",
     "webpack": "^4.29.0"
   },

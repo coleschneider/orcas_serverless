@@ -1,5 +1,5 @@
 export class BaseError extends Error {
-  public statusCode: number
+   statusCode: number
   constructor(message?: string) {
     super(message)
     this.statusCode = 400 // default statusCode
